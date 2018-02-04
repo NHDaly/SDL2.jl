@@ -7,8 +7,9 @@
 println(Pkg.dir())
 cd(Pkg.dir()*"/SDL2/src/")
 
-const libSDL = Pkg.dir()*"/Homebrew/deps/usr/Cellar/sdl2/2.0.7/lib/libSDL2.dylib"
-const SDL_ttf = Pkg.dir()*"/Homebrew/deps/usr/Cellar/sdl2_ttf/2.0.14/lib/libSDL2_ttf.dylib"
+libDir = Pkg.dir()*"/SDL2/lib"
+const libSDL = "$libDir/libSDL2.dylib"
+const SDL_ttf = "$libDir/libSDL2_ttf.dylib"
 
 include("lib/SDL.jl")
 include("lib/SDL_ttf.jl")
