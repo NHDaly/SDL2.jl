@@ -10,8 +10,10 @@ cd(Pkg.dir()*"/SDL2/src/")
 libDir = Pkg.dir()*"/SDL2/lib"
 const libSDL = "$libDir/libSDL2.dylib"
 const SDL_ttf = "$libDir/libSDL2_ttf.dylib"
+const SDL_mixer = "$libDir/libSDL2_ttf.dylib"
 
 include("lib/SDL.jl")
+include("lib/SDL_ttf.jl")
 include("lib/SDL_ttf.jl")
 
 SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 16)
