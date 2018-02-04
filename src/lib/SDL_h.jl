@@ -297,7 +297,8 @@ const SDL_ALPHA_TRANSPARENT = 0
 # Skipping MacroDefinition: SDL_ISPIXELFORMAT_FOURCC ( format ) ( ( format ) && ( SDL_PIXELFLAG ( format ) != 1 ) )
 
 #const Uint8 = Cint
-const Uint8 = Cint
+#const Uint8 = Cint
+const Uint8 = Cuchar
 
 mutable struct SDL_Color
     r::Uint8
@@ -501,22 +502,38 @@ const SDL_FALSE = (UInt32)(0)
 const SDL_TRUE = (UInt32)(1)
 # end enum ANONYMOUS_1
 
+#const SDL_bool = Bool
+#const Sint8 = Cint
+#const Sint16 = Cint
+#const Uint16 = Cint
+#const Sint32 = Cint
+#const Uint32 = Cint
+#const Sint64 = Cint
+#const Uint64 = Cint
+#const SDL_dummy_uint8 = Cint
+#const SDL_dummy_sint8 = Cint
+#const SDL_dummy_uint16 = Cint
+#const SDL_dummy_sint16 = Cint
+#const SDL_dummy_uint32 = NTuple{1, Cint}
+#const SDL_dummy_sint32 = NTuple{1, Cint}
+#const SDL_dummy_uint64 = Cint
+#const SDL_dummy_sint64 = Cint
 const SDL_bool = Bool
-const Sint8 = Cint
-const Sint16 = Cint
-const Uint16 = Cint
+const Sint8 = Cchar
+const Sint16 = Cshort
+const Uint16 = Cushort
 const Sint32 = Cint
-const Uint32 = Cint
-const Sint64 = Cint
-const Uint64 = Cint
-const SDL_dummy_uint8 = Cint
-const SDL_dummy_sint8 = Cint
-const SDL_dummy_uint16 = Cint
-const SDL_dummy_sint16 = Cint
+const Uint32 = Cuint
+const Sint64 = Clonglong
+const Uint64 = Culonglong
+const SDL_dummy_uint8 = Cchar
+const SDL_dummy_sint8 = Cuchar
+const SDL_dummy_uint16 = Cshort
+const SDL_dummy_sint16 = Cushort
 const SDL_dummy_uint32 = NTuple{1, Cint}
 const SDL_dummy_sint32 = NTuple{1, Cint}
-const SDL_dummy_uint64 = Cint
-const SDL_dummy_sint64 = Cint
+const SDL_dummy_uint64 = Clonglong
+const SDL_dummy_sint64 = Culonglong
 
 # begin enum ANONYMOUS_2
 const ANONYMOUS_2 = UInt32
@@ -775,7 +792,8 @@ const SDL_BLENDMODE_ADD = (UInt32)(2)
 const SDL_BLENDMODE_MOD = (UInt32)(4)
 # end enum ANONYMOUS_13
 
-const SDL_BlendMode = Void
+#const SDL_BlendMode = Void
+const SDL_BlendMode = UInt32
 
 mutable struct SDL_Surface
     flags::Uint32
