@@ -3,28 +3,29 @@
 #export SDL_WINDOW_SHOWN, SDL_CreateWindow
 
 # package code goes here
+println("SDL2!")
 
-cwd = pwd()
-println(Pkg.dir())
-cd(Pkg.dir()*"/SDL2/src/")
+SDL2_libDir = Pkg.dir()*"/SDL2/lib"
+const libSDL = "$SDL2_libDir/libSDL2.dylib"
+const SDL_ttf = "$SDL2_libDir/libSDL2_ttf.dylib"
+const SDL_mixer = "$SDL2_libDir/libSDL2_mixer.dylib"
 
-libDir = Pkg.dir()*"/SDL2/lib"
-const libSDL = "$libDir/libSDL2.dylib"
-const SDL_ttf = "$libDir/libSDL2_ttf.dylib"
-const SDL_mixer = "$libDir/libSDL2_mixer.dylib"
+const pkgSrcDir = Pkg.dir()*"/SDL2/src/"
+include("$pkgSrcDir/lib/SDL.jl")
+include("$pkgSrcDir/lib/SDL_ttf.jl")
+include("$pkgSrcDir/lib/SDL_mixer.jl")
 
-include("lib/SDL.jl")
-include("lib/SDL_ttf.jl")
-include("lib/SDL_mixer.jl")
+function SDL_JL_Init()
+    println("SDL_JL_Init()")
+    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 16)
+    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 16)
+    SDL_Init(UInt32(SDL_INIT_VIDEO))
 
-SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 16)
-SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 16)
-SDL_Init(UInt32(SDL_INIT_VIDEO))
-
-TTF_Init()
-Mix_CloseAudio();  # Harmless if not already open, but open crashes if called twice.
-succ = Mix_OpenAudio(Int32(22050), MIX_DEFAULT_FORMAT, Int32(2), Int32(1024) )
-println("OpenAudio: $succ")
+    TTF_Init()
+    Mix_CloseAudio();  # Harmless if not already open, but open crashes if called twice.
+    succ = Mix_OpenAudio(Int32(22050), MIX_DEFAULT_FORMAT, Int32(2), Int32(1024) )
+    println("OpenAudio: $succ")
+end
 
 #win = SDL_CreateWindow("Hello World!", Int32(100), Int32(100), Int32(800), Int32(600), Int32(SDL_WINDOW_SHOWN))
 #SDL_SetWindowResizable(win,true)
@@ -43,6 +44,11 @@ function SDL_QuitAll()
     TTF_Quit();
     SDL_Quit();
 end
+
+# Macro definitions
+SDL_KEYCODE_TO_SCANCODE(X) = ( X & SDLK_SCANCODE_MASK )
+
+
 
 #bkg = SDL_Color(200, 200, 200, 255)
 #
@@ -86,8 +92,6 @@ end
 ##SDL_Quit()
 
 
-
-cd(cwd)
 
 
 #end # module
