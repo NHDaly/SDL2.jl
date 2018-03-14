@@ -4,19 +4,20 @@ matrix:
          julia: 0.6
          os: linux
          dist: trusty
-         sudo: false
+         sudo: true
        - language: julia
          julia: nightly
          os: linux
          dist: trusty
-         sudo: false
+         sudo: true
        - language: julia
          julia: 0.6
          os: linux
+         sudo: true
        - language: julia
          julia: nightly
          os: linux
-
+         sudo: true
        - language: julia
          julia: 0.6
          os: osx
