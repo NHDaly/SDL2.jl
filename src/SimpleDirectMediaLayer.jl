@@ -13,6 +13,11 @@ module SimpleDirectMediaLayer
         error("SimpleDirectMediaLayer not properly installed. Please run Pkg.build(\"SimpleDirectMediaLayer\") then restart Julia.")
     end
 
+    # Deprecate old library variables
+    Base.@deprecate_binding libSDL2       SimpleDirectMediaLayer.libsdl2       false
+    # Base.@deprecate_binding libSDL2_mixer SimpleDirectMediaLayer.libsdl2_mixer false
+    # Base.@deprecate_binding libSDL2_ttf   SimpleDirectMediaLayer.libsdl2_ttf   false
+
     include("lib/SDL.jl")
     include("lib/SDL_ttf.jl")
     include("lib/SDL_mixer.jl")
